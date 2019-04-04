@@ -5,8 +5,39 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Customer Index</h2>
+<h2>Customers</h2>
 
-@foreach(var customer in Model.Customers){
-    <li>@Html.ActionLink( customer.Name, "Show","Customer", new { Id=customer.Id }, null )</li>
+@if (!Model.Customers.Any())
+{
+    <h4>We Don't have any customers yet.</h4>
 }
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Membership Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model.Customers)
+            {
+                <tr>
+                    <td>@Html.ActionLink(customer.Name, "Show", "Customer", new { Id = customer.Id }, null)</td>
+
+                    @if (customer.MembershipTypeId == 1 || customer.MembershipTypeId == 2)
+                    {
+                        <td>Member</td>
+                    }
+                    else
+                    {
+                        <td>VIP</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+}
+

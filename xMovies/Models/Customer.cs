@@ -14,6 +14,7 @@ namespace xMovies.Models
         public string Name { get; set; }
         public bool EmailSubscribed { get; set; }
         public MembershipType MembershipType { get; set; }
-        public byte MembershipTypeId{ get; set; }
+        public byte MembershipTypeId { get; set; }
+        public short MembershipDurationLeftInMonth { get; set; }
     }
 }

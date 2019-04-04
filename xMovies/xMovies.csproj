@@ -222,6 +222,10 @@
     <Compile Include="Migrations\201904041905233_ApplyAnnotationToCustomerName.Designer.cs">
       <DependentUpon>201904041905233_ApplyAnnotationToCustomerName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904042003278_CustomerMembershipDurationLeftAdded.cs" />
+    <Compile Include="Migrations\201904042003278_CustomerMembershipDurationLeftAdded.Designer.cs">
+      <DependentUpon>201904042003278_CustomerMembershipDurationLeftAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -330,6 +334,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904041905233_ApplyAnnotationToCustomerName.resx">
       <DependentUpon>201904041905233_ApplyAnnotationToCustomerName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904042003278_CustomerMembershipDurationLeftAdded.resx">
+      <DependentUpon>201904042003278_CustomerMembershipDurationLeftAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
