@@ -13,18 +13,8 @@ namespace xMovies.Controllers
         // GET: Customer
         public ActionResult Index()
         {
-            List<Customer> customers = new List<Customer>
-            {
-                new Customer{ Id=1, Name="Peter Parker" },
-                new Customer{ Id=1, Name="John Doe" },
-                new Customer{ Id=1, Name="Valak" },
-                new Customer{ Id=1, Name="Wed Welson" },
-                new Customer{ Id=1, Name="Dr. Von Doom" },
-                new Customer{ Id=1, Name="Pikachu" },
-            };
-
             var CustomerV = new CustomerIndexViewModel {
-                Customers = customers
+                Customers = GetCustomers().ToList()
             };
             return View(CustomerV);
         }
@@ -32,18 +22,27 @@ namespace xMovies.Controllers
         [Route("customer/detail/{Id}")]
         public ActionResult Show(int Id)
         {
-            List<Customer> customers = new List<Customer>
+            var customer = GetCustomerWithId(Id);
+
+            return View(customer);
+        }
+
+        private IEnumerable<Customer> GetCustomers()
+        {
+            return new List<Customer>
             {
                 new Customer{ Id=1, Name="Peter Parker" },
                 new Customer{ Id=1, Name="John Doe" },
                 new Customer{ Id=1, Name="Valak" },
                 new Customer{ Id=1, Name="Wed Welson" },
                 new Customer{ Id=1, Name="Dr. Von Doom" },
-                new Customer{ Id=1, Name="Pikachu" },
+                new Customer{ Id=1, Name="Pikachu" }
             };
-            var customer = customers[Id - 1];
+        }
 
-            return View(customer);
+        private Customer GetCustomerWithId(int Id)
+        {
+            return GetCustomers().ToList()[Id - 1];
         }
     }
 }
