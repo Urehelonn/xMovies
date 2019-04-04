@@ -10,11 +10,26 @@ namespace xMovies.Controllers
 {
     public class CustomerController : Controller
     {
-        // GET: Customer
-        public ActionResult Index()
+        private ApplicationDbContext _context;
+
+        public CustomerController()
         {
+            _context = new ApplicationDbContext();
+        }
+
+        //dbcontext as disposable object needs to override this method
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
+        // GET: Customer
+        public ViewResult Index()
+        {
+            var customers = GetCustomers().ToList();
+
             var CustomerV = new CustomerIndexViewModel {
-                Customers = GetCustomers().ToList()
+                Customers = customers
             };
             return View(CustomerV);
         }
@@ -29,20 +44,12 @@ namespace xMovies.Controllers
 
         private IEnumerable<Customer> GetCustomers()
         {
-            return new List<Customer>
-            {
-                new Customer{ Id=1, Name="Peter Parker" },
-                new Customer{ Id=1, Name="John Doe" },
-                new Customer{ Id=1, Name="Valak" },
-                new Customer{ Id=1, Name="Wed Welson" },
-                new Customer{ Id=1, Name="Dr. Von Doom" },
-                new Customer{ Id=1, Name="Pikachu" }
-            };
+            return _context.Customers;
         }
 
         private Customer GetCustomerWithId(int Id)
         {
-            return GetCustomers().ToList()[Id - 1];
+            return GetCustomers().SingleOrDefault(c=>c.Id==Id);
         }
     }
 }
