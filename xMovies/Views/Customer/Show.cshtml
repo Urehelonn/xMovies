@@ -1,9 +1,29 @@
 ﻿@model xMovies.Models.Customer
 
 @{
+    /**/
+
     ViewBag.Title = "Show";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>@Model.Name</h2>
 
+@* show membership type *@
+
+@if (@Model.MembershipTypeId < 3)
+{
+    <li>Membership: Member</li>
+}
+else
+{
+    <li>Membership: VIP Member</li>
+}
+
+
+@* show duration left *@
+<li>Duration Left In Month: @Model.MembershipDurationLeftInMonth</li>
+@* birthday *@
+<li>Duration Left In Month: @Model.MembershipDurationLeftInMonth</li>
+
+@* birthday *@

@@ -26,7 +26,7 @@ else
                 <tr>
                     <td>@Html.ActionLink(customer.Name, "Show", "Customer", new { Id = customer.Id }, null)</td>
 
-                    @if (customer.MembershipTypeId == 1 || customer.MembershipTypeId == 2)
+                    @if (customer.MembershipTypeId < 3)
                     {
                         <td>Member</td>
                     }
