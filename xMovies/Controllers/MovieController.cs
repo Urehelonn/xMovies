@@ -10,16 +10,17 @@ namespace xMovies.Controllers
 {
     public class MovieController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public MovieController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
         // GET: Movie
         public ActionResult Index()
         {
-            List<Movie> movies = new List<Movie>
-            {
-                new Movie{ Id = 1, Name = "Deadpool" },
-                new Movie{ Id = 2, Name = "Spiderman - Home Comming" },
-                new Movie{ Id = 3, Name = "Detective Pikachu" },
-                new Movie{ Id = 4, Name = "One Punch Man" },
-            };
+            List<Movie> movies = GetMovies().ToList();
 
             var movieV = new MovieIndexViewModel {
                 Movies = movies
@@ -31,17 +32,17 @@ namespace xMovies.Controllers
         [Route("movie/detail/{Id}")]
         public ActionResult Show(int Id)
         {
-            List<Movie> movies = new List<Movie>
-            {
-                new Movie{ Id = 1, Name = "Deadpool" },
-                new Movie{ Id = 2, Name = "Spiderman - Home Comming" },
-                new Movie{ Id = 3, Name = "Detective Pikachu" },
-                new Movie{ Id = 4, Name = "One Punch Man" },
-            };
-
-            var movie = movies[Id - 1];
-
+            var movie = GetMoviesById(Id);
             return View(movie);
+        }
+
+        public IEnumerable<Movie> GetMovies()
+        {
+            return _context.Movies;
+        }
+        public Movie GetMoviesById(int Id)
+        {
+            return GetMovies().SingleOrDefault(c=>c.Id==Id);
         }
     }
 }
