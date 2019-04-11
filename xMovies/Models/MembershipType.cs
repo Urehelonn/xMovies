@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -12,5 +13,7 @@ namespace xMovies.Models
         public byte DurationInMonths { get; set; }
         //members have access on all un-star movie, vip have access to all movies
         public byte MembershipClass { get; set; }
+        [Display(Name = "Membership Choice")]
+        public string MembershipName { get; set; }
     }
 }

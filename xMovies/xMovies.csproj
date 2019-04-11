@@ -231,6 +231,10 @@
     <Compile Include="Migrations\201904100625254_GenreTableInsert.Designer.cs">
       <DependentUpon>201904100625254_GenreTableInsert.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904110648272_membershipTypeAlter.cs" />
+    <Compile Include="Migrations\201904110648272_membershipTypeAlter.Designer.cs">
+      <DependentUpon>201904110648272_membershipTypeAlter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -239,6 +243,7 @@
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\CreateCustomerViewModel.cs" />
     <Compile Include="ViewModels\CustomerIndexViewModel.cs" />
     <Compile Include="ViewModels\MovieIndexViewModel.cs" />
   </ItemGroup>
@@ -330,6 +335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904100625254_GenreTableInsert.resx">
       <DependentUpon>201904100625254_GenreTableInsert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904110648272_membershipTypeAlter.resx">
+      <DependentUpon>201904110648272_membershipTypeAlter.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -47,7 +47,23 @@ namespace xMovies.Controllers
         //direct to add new customer page
         public ActionResult New()
         {
-            return View();
+            var membershipTypes = _context.MembershipTypes.ToList();
+            var viewModel = new CreateCustomerViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+
+            return View(viewModel);
+        }
+
+        //Post: customer/create
+        //get data from add customer page and store to database then redirect
+        [HttpPost]
+        public ActionResult Create(Customer customer)
+        {
+            //_context.Customers.Add(customer);
+            //_context.SaveChanges();
+            return RedirectToAction("Index", "Customer");
         }
 
         //Get: customer/edit/:id
