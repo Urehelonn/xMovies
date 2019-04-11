@@ -42,11 +42,28 @@ namespace xMovies.Controllers
             return View(customer);
         }
 
+
+        //Get: customer/new
+        //direct to add new customer page
+        public ActionResult New()
+        {
+            return View();
+        }
+
+        //Get: customer/edit/:id
+        //take id and direct to customer edit page
+        public ActionResult Edit(int Id)
+        {
+            return View();
+        }
+
+
+
+        //functions
         private IEnumerable<Customer> GetCustomers()
         {
             return _context.Customers;
         }
-
         private Customer GetCustomerWithId(int Id)
         {
             return GetCustomers().SingleOrDefault(c=>c.Id==Id);
