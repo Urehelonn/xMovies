@@ -23,7 +23,17 @@ else
 
 @* show duration left *@
 <li>Duration Left In Month: @Model.MembershipDurationLeftInMonth</li>
-@* birthday *@
-<li>Duration Left In Month: @Model.MembershipDurationLeftInMonth</li>
 
-@* birthday *@
+@* email subscribe *@
+<li>
+    News Subscribe: @if (Model.EmailSubscribed)
+    {
+        <strong>Yes</strong>
+    }
+    else
+    {
+        <strong>No</strong>
+    }
+</li>
+
+<button class="btn btn-alert"></button>

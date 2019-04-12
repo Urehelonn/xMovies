@@ -5,8 +5,23 @@
 }
 
 <h2> Movie Index</h2>
-
-@foreach (var movie in @Model.Movies)
-{
-    <li>@Html.ActionLink(@movie.Name, "Show", "Movie", new { Id = movie.Id }, null)</li>
-}
+<button>@Html.ActionLink("Add New Movie", "New", "Movie")</button>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Movie</th>
+            <th>Release Date</th>
+            <th>Genre</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in @Model.Movies)
+        {
+            <tr>
+                <th>@Html.ActionLink(@movie.Name, "Show", "Movie", new { Id = movie.Id }, null)</th>
+                <td>@movie.ReleaseDate.ToString("MMM, yyyy")</td>
+                <td>@movie.Genre.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>

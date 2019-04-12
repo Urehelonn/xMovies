@@ -48,21 +48,35 @@ namespace xMovies.Controllers
         public ActionResult New()
         {
             var membershipTypes = _context.MembershipTypes.ToList();
-            var viewModel = new CreateCustomerViewModel
+            var viewModel = new CustomerFormViewModel
             {
                 MembershipTypes = membershipTypes
             };
 
-            return View(viewModel);
+            return View("CustomerForm", viewModel);
         }
 
         //Post: customer/create
         //get data from add customer page and store to database then redirect
         [HttpPost]
-        public ActionResult Create(Customer customer)
+        public ActionResult Save(Customer customer)
         {
-            //_context.Customers.Add(customer);
-            //_context.SaveChanges();
+            //create new customer
+            if (customer.Id == 0)
+            {
+                _context.Customers.Add(customer);
+            }
+            //update existing customer with matching id
+            else
+            {
+                var customerInDb = _context.Customers.Single(c=>c.Id==customer.Id);
+
+                //update  
+                customerInDb.Name = customer.Name;
+                customerInDb.EmailSubscribed = customer.EmailSubscribed;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+            }
+            _context.SaveChanges();
             return RedirectToAction("Index", "Customer");
         }
 
@@ -70,7 +84,17 @@ namespace xMovies.Controllers
         //take id and direct to customer edit page
         public ActionResult Edit(int Id)
         {
-            return View();
+            var customer = GetCustomerWithId(Id);
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+            var viewModel = new CustomerFormViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+            return View("CustomerForm", viewModel);
         }
 
 

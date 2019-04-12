@@ -1,4 +1,4 @@
-﻿@model xMovies.ViewModels.CreateCustomerViewModel
+﻿@model xMovies.ViewModels.CustomerFormViewModel
 @{
     ViewBag.Title = "New";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,7 +6,7 @@
 
 <h2>New Customer</h2>
 
-@using (Html.BeginForm("Create", "Customer"))
+@using (Html.BeginForm("Save", "Customer"))
 {
     <div class="form-group">
         @Html.LabelFor(c => c.Customer.Name)
@@ -15,7 +15,7 @@
     <div class="form-group">
         @*expect display: Membership Choice*@
         @Html.LabelFor(c => c.Customer.MembershipType.MembershipName)
-        @Html.DropDownListFor(c => c.Customer.MembershipType.MembershipName, new SelectList(Model.MembershipTypes, "Id", "MembershipName"),"-- Select Membership Type --", new { @class = "form-control" })
+        @Html.DropDownListFor(c => c.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "MembershipName"),"-- Select Membership Type --", new { @class = "form-control" })
     </div>
     <div class="checkbox">
         <label>
@@ -23,5 +23,7 @@
         </label>
     </div>
 
-    <button type="submit" class="btn-primary">Save New Customer</button>
+    @Html.HiddenFor(c=>c.Customer.Id)
+
+    <button type="submit" class="btn-success">Save New Customer</button>
 }
