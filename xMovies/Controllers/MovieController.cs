@@ -46,14 +46,50 @@ namespace xMovies.Controllers
         //direct to add new movie page
         public ActionResult New()
         {
-            return View();
+            var viewModel = new MovieFormViewModel
+            {
+                Genres = _context.Genres.ToList(),
+            };
+            return View("MovieForm", viewModel);
+        }
+
+        //Get: movie/new
+        //apply change of the movie from edit page or create page to database
+        public ActionResult Save(Movie movie)
+        {
+            //create new movie
+            if (movie.Id == 0)
+            {
+                _context.Movies.Add(movie);
+            }
+            //edit movie
+            else
+            {
+                var movieInDb = _context.Movies.First(m=>m.Id==movie.Id);
+
+                movieInDb.Name = movie.Name;
+                movieInDb.GenreId = movie.GenreId;
+                movieInDb.ReleaseDate = movie.ReleaseDate;
+            }
+            _context.SaveChanges();
+            return RedirectToAction("Index","Movie");
         }
 
         //Get: movie/edit/:id
         //take id and direct to movie edit page
         public ActionResult Edit(int Id)
         {
-            return View();
+            var movie = GetMoviesById(Id);
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+            var viewModel = new MovieFormViewModel
+            {
+                Movie = movie,
+                Genres = _context.Genres.ToList()
+            };
+            return View("MovieForm", viewModel);
         }
 
         //functions
