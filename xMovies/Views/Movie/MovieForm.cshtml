@@ -1,12 +1,10 @@
 ﻿@model xMovies.ViewModels.MovieFormViewModel
 @{
-    /**/
-
     ViewBag.Title = "New";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if (@Model.Movie==null)
+@if (@Model.Movie == null)
 {
     <h2>Add New Movie</h2>
 }
@@ -26,8 +24,12 @@ else
         @Html.EditorFor(c => c.Movie.ReleaseDate, new { @class = "form-control" })
     </div>
     <div class="form-group">
-        @Html.LabelFor(c => c.Genres)
-        @Html.DropDownListFor(c => c.Genres, new SelectList(Model.Genres, "Id", "Name"), new { @class = "form-control" })
+        @Html.LabelFor(c => c.Movie.GenreId)
+        @Html.DropDownListFor(c => c.Movie.GenreId, new SelectList(Model.Genres, "Id", "Name"), new { @class = "form-control" })
     </div>
+
+    //Must have id for existing movie as well
+    @Html.HiddenFor(c => c.Movie.Id)
+
     <button type="submit" class="btn-success">Save</button>
 }

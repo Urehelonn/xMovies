@@ -55,6 +55,7 @@ namespace xMovies.Controllers
 
         //Get: movie/new
         //apply change of the movie from edit page or create page to database
+        [HttpPost]
         public ActionResult Save(Movie movie)
         {
             //create new movie
@@ -65,12 +66,14 @@ namespace xMovies.Controllers
             //edit movie
             else
             {
-                var movieInDb = _context.Movies.First(m=>m.Id==movie.Id);
+                var movieInDb = _context.Movies.Single(m=>m.Id==movie.Id);
 
+                //update current movie using given data
                 movieInDb.Name = movie.Name;
-                movieInDb.GenreId = movie.GenreId;
                 movieInDb.ReleaseDate = movie.ReleaseDate;
+                movieInDb.GenreId = movie.GenreId;
             }
+
             _context.SaveChanges();
             return RedirectToAction("Index","Movie");
         }
@@ -95,7 +98,7 @@ namespace xMovies.Controllers
         //functions
         public IEnumerable<Movie> GetMovies()
         {
-            return _context.Movies.Include(m => m.Genre);
+            return _context.Movies.Include(m=>m.Genre);
         }
         public Movie GetMoviesById(int Id)
         {
