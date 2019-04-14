@@ -1,10 +1,12 @@
 ﻿@model xMovies.ViewModels.CustomerFormViewModel
 @{
+    /**/
+
     ViewBag.Title = "New";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if (Model.Customer == null)
+@if (Model == null)
 {
     <h2>New Customer</h2>
 }
@@ -15,18 +17,26 @@ else
 
 @using (Html.BeginForm("Save", "Customer"))
 {
+    @Html.ValidationSummary(true, "Please fix following errors: ")
     <div class="form-group">
         @Html.LabelFor(c => c.Customer.Name)
         @Html.TextBoxFor(c => c.Customer.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Customer.Name)
     </div>
     <div class="form-group">
         @*expect display: Membership Choice*@
         @Html.LabelFor(c => c.Customer.MembershipType.MembershipName)
         @Html.DropDownListFor(c => c.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "MembershipName"), "-- Select Membership Type --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Customer.MembershipTypeId)
     </div>
     <div class="checkbox">
         <label>
             @Html.CheckBoxFor(c => c.Customer.EmailSubscribed)   Subscribe to xMovie Weekly News
+        </label>
+    </div>
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(c => c.Customer.IsAdult)   You sure you're adult ??
         </label>
     </div>
 

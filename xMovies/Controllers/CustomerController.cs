@@ -61,6 +61,15 @@ namespace xMovies.Controllers
         [HttpPost]
         public ActionResult Save(Customer customer)
         {
+            //if invalid need user to re-enter required data
+            if(!ModelState.IsValid){
+                var viewModel = new CustomerFormViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+                return View("CustomerForm", viewModel);
+            }
             //create new customer
             if (customer.Id == 0)
             {
@@ -75,6 +84,7 @@ namespace xMovies.Controllers
                 customerInDb.Name = customer.Name;
                 customerInDb.EmailSubscribed = customer.EmailSubscribed;
                 customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                customerInDb.IsAdult = customer.IsAdult;
             }
             _context.SaveChanges();
             return RedirectToAction("Index", "Customer");
