@@ -17,7 +17,7 @@ else
 
 @using (Html.BeginForm("Save", "Customer"))
 {
-    @Html.ValidationSummary(true, "Please fix following errors: ")
+    @Html.ValidationSummary(true, "Please fix following error(s): ")
     <div class="form-group">
         @Html.LabelFor(c => c.Customer.Name)
         @Html.TextBoxFor(c => c.Customer.Name, new { @class = "form-control" })
@@ -41,6 +41,11 @@ else
     </div>
 
     @Html.HiddenFor(c => c.Customer.Id)
-
+    @Html.AntiForgeryToken()
     <button type="submit" class="btn-success">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
 }

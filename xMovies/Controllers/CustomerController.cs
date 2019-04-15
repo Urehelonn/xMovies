@@ -59,6 +59,7 @@ namespace xMovies.Controllers
         //Post: customer/create
         //get data from add customer page and store to database then redirect
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
             //if invalid need user to re-enter required data
