@@ -239,17 +239,12 @@
     <Compile Include="Migrations\201904140844113_IsAdultAddToCustomer.Designer.cs">
       <DependentUpon>201904140844113_IsAdultAddToCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904150429321_IfVipREquiredAddToMovie.cs" />
-    <Compile Include="Migrations\201904150429321_IfVipREquiredAddToMovie.Designer.cs">
-      <DependentUpon>201904150429321_IfVipREquiredAddToMovie.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
-    <Compile Include="Models\MovieReleaseDateNeedToBeConvencing.cs" />
     <Compile Include="Models\VIPNeedToBeAdultValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -447,9 +442,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904140844113_IsAdultAddToCustomer.resx">
       <DependentUpon>201904140844113_IsAdultAddToCustomer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904150429321_IfVipREquiredAddToMovie.resx">
-      <DependentUpon>201904150429321_IfVipREquiredAddToMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
