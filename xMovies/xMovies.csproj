@@ -239,6 +239,10 @@
     <Compile Include="Migrations\201904140844113_IsAdultAddToCustomer.Designer.cs">
       <DependentUpon>201904140844113_IsAdultAddToCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904260701338_rollbackMigration.cs" />
+    <Compile Include="Migrations\201904260701338_rollbackMigration.Designer.cs">
+      <DependentUpon>201904260701338_rollbackMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -442,6 +446,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904140844113_IsAdultAddToCustomer.resx">
       <DependentUpon>201904140844113_IsAdultAddToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904260701338_rollbackMigration.resx">
+      <DependentUpon>201904260701338_rollbackMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
