@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using xMovies.Models;
 using AutoMapper;
+using xMovies.Dto;
+using System;
 
 namespace xMovies.Controllers.API
 {
     public class CustomerController : ApiController
-    {
+    { 
         private ApplicationDbContext _context;
         public CustomerController()
         {
@@ -18,28 +18,28 @@ namespace xMovies.Controllers.API
         }
         //get: api/customer
         //return all customers
-        public IEnumerable<CustomerDto> GetCustomers()
+        public IHttpActionResult GetCustomers()
         {
-            IEnumerable<Customer> customers = _context.Customers.ToList();
-            return customers.Select(Mapper.Map<Customer, CustomerDto>);
+            IEnumerable<Customer> customers = _context.Customers.ToList();            
+            return Ok(customers.Select(Mapper.Map<Customer, CustomerDto>));
         }
 
         //get: api/customer/:Id
         //return single customer with required Id
-        public CustomerDto GetCustomer(int Id)
+        public IHttpActionResult GetCustomer(int Id)
         {
             var customer = _context.Customers.SingleOrDefault(c=>c.Id==Id);
             if (customer == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
-            return Mapper.Map<Customer, CustomerDto>(customer);
+            return Ok(Mapper.Map<Customer, CustomerDto>(customer));
         }
 
         //post: api/customer
         //post new customer to database
         [HttpPost]
-        public CustomerDto AddCustomer(CustomerDto customerDto)
+        public IHttpActionResult AddCustomer(CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
             {
@@ -50,36 +50,39 @@ namespace xMovies.Controllers.API
             _context.SaveChanges();
 
             customerDto.Id = customer.Id;
-            return customerDto;
+            return Created(new Uri(Request.RequestUri+"/"+customer.Id), customerDto);
         }
 
         //put: api/customer
         //update existing customer and save to database
         [HttpPut]
-        public void UpdateCustomer(int Id, CustomerDto customerDto)
+        public IHttpActionResult UpdateCustomer(int Id, CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
             {
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
             var CustomerInDb = _context.Customers.SingleOrDefault(c => c.Id == Id);
             if (CustomerInDb == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
 
             Mapper.Map(customerDto, CustomerInDb);
-
             _context.SaveChanges();
+
+            return Ok();
         }
 
+        //delete: api/customer/:Id
         [HttpDelete]
-        public void DeleteCustomer(int Id)
+        public IHttpActionResult DeleteCustomer(int Id)
         {
             var customerInDb = _context.Customers.SingleOrDefault(c=>c.Id==Id);
-            if (customerInDb == null) throw new HttpResponseException(HttpStatusCode.NotFound);
+            if (customerInDb == null) return NotFound();
             _context.Customers.Remove(customerInDb);
             _context.SaveChanges();
+            return Ok();
         }
     }
 }
