@@ -20,6 +20,7 @@ else
             <tr>
                 <th>Customer</th>
                 <th>Membership Type</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -35,6 +36,7 @@ else
                     {
                         <td>VIP</td>
                     }
+                    <td><button class="btn btn-link js-delete" customerId =" @customer.Id">Delete</button></td>
                 </tr>
             }
         </tbody>
@@ -42,3 +44,21 @@ else
 
 }
 
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $(".js-delete").on("click", function () {
+                if (confirm("Wanna delete the customer?")) {
+                    console.log($(this).attr("customerId"));
+                    $.ajax({
+                        url: ("/api/customer/" + $(this).attr("customerId")).toString().trim(),
+                        method: "DELETE",
+                        success: function () {
+                            console.log("foo")
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
