@@ -15,7 +15,7 @@
 }
 else
 {
-    <table class="table table-bordered table-hover">
+    <table id="customers" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Customer</th>
@@ -47,7 +47,9 @@ else
 @section scripts{
     <script>
         $(document).ready(function () {
-            $(".js-delete").on("click", function () {
+            $("#customers").DataTable();
+
+            $("#customers").on("click", ".js-delete", function () {
                 var button = $(this);
                 var str = "/api/customer/" + button.attr("customerId").replace(" ", "");
                 bootbox.confirm("Sure you wanna delete the customer?", function (result) {
