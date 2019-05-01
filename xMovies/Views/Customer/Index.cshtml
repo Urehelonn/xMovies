@@ -48,16 +48,19 @@ else
     <script>
         $(document).ready(function () {
             $(".js-delete").on("click", function () {
-                if (confirm("Wanna delete the customer?")) {
-                    console.log($(this).attr("customerId"));
-                    $.ajax({
-                        url: ("/api/customer/" + $(this).attr("customerId")).toString().trim(),
-                        method: "DELETE",
-                        success: function () {
-                            console.log("foo")
-                        }
-                    });
-                }
+                var button = $(this);
+                var str = "/api/customer/" + button.attr("customerId").replace(" ", "");
+                bootbox.confirm("Sure you wanna delete the customer?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: (str),
+                            method: "DELETE",
+                            success: function () {
+                                button.parents("tr").remove();
+                            }
+                        });
+                    }
+                });
             });
         });
     </script>
