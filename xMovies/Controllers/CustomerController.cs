@@ -26,12 +26,7 @@ namespace xMovies.Controllers
         // GET: Customer
         public ViewResult Index()
         {
-            var customers = GetCustomers().ToList();
-
-            var CustomerV = new CustomerIndexViewModel {
-                Customers = customers
-            };
-            return View(CustomerV);
+            return View();
         }
 
         [Route("customer/detail/{Id}")]
