@@ -4,6 +4,7 @@ using System.Net;
 using System.Web.Http;
 using xMovies.Models;
 using AutoMapper;
+using System.Data.Entity;
 using xMovies.Dto;
 using System;
 
@@ -20,8 +21,11 @@ namespace xMovies.Controllers.API
         //return all customers
         public IHttpActionResult GetCustomers()
         {
-            IEnumerable<Customer> customers = _context.Customers.ToList();            
-            return Ok(customers.Select(Mapper.Map<Customer, CustomerDto>));
+            var customerDtos = _context.Customers
+                .Include(c => c.MembershipType)
+                .ToList()
+                .Select(Mapper.Map<Customer, CustomerDto>);        
+            return Ok(customerDtos);
         }
 
         //get: api/customer/:Id
