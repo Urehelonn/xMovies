@@ -212,6 +212,7 @@
     <Compile Include="Controllers\API\MovieController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
+    <Compile Include="Dto\GenreDto.cs" />
     <Compile Include="Dto\MembershipTypeDto.cs" />
     <Compile Include="Dto\MovieDto.cs" />
     <Compile Include="Global.asax.cs">

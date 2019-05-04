@@ -13,6 +13,7 @@ namespace xMovies.Dto
         [StringLength(255)]
         public string Name { get; set; }
 
+        public GenreDto GenreDto { get; set; }
         [Required]
         public byte GenreId { get; set; }
 

@@ -6,7 +6,7 @@
 
 <h2> Movie Index</h2>
 <button>@Html.ActionLink("Add New Movie", "New", "Movie")</button>
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover" id="movies">
     <thead>
         <tr>
             <th>Movie</th>
@@ -15,13 +15,52 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var movie in @Model.Movies)
-        {
-            <tr>
-                <th>@Html.ActionLink(@movie.Name, "Edit", "Movie", new { Id = movie.Id }, null)</th>
-                <td>@movie.ReleaseDate.ToString("MMM, yyyy")</td>
-                <td>@movie.Genre.Name</td>
-            </tr>
-        }
     </tbody>
 </table>
+
+@section scripts{
+    <script>
+        var table = $("#movie").Datatable({
+            ajax: {
+                url: "api/movie/",
+                dataSrc: ""
+            },
+            column: [
+                {
+                    data: "name",
+                    render: function(data, type, movie) {
+                        return "<a href='/movie/"+movie.id+"'>"+data+"</a>"
+                    }
+                },
+                {
+                    data: "releaseDate"
+                },
+                {
+                    data: "genre.name"
+                },
+                {
+                    data: "id",
+                    render: function (data) {
+                        return "<button class='js-delete' movieId="+data+">Delete</button>"
+                    }
+                }
+            ]
+        });
+
+        $('#movies').on("click", "js-delete", function () {
+            var button = $(this);
+            var str = ("/api/movie/" + button.attr.movieId).replace(" ", "");
+            bootbox.confirm("You sure to delete this movie from database?", function (res) {
+                if (res) {
+                    $.ajax({
+                        url: (str),
+                        method: "DELETE",
+                        success: function () {
+                            table.row(button.parents("tr")).remove().draw();
+                        }
+                    })
+                }
+            })
+        })
+    </script>    
+}
