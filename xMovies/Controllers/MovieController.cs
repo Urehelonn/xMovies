@@ -24,12 +24,7 @@ namespace xMovies.Controllers
         // GET: Movie
         public ActionResult Index()
         {
-            List<Movie> movies = GetMovies().ToList();
-            var movieV = new MovieIndexViewModel {
-                Movies = movies
-            };
-
-            return View(movieV);
+            return View();
         }
 
         //Get: movie/detail/:id

@@ -7,6 +7,7 @@ using System.Web.Http;
 using xMovies.Dto;
 using xMovies.Models;
 using AutoMapper;
+using System.Data.Entity;
 
 namespace xMovies.Controllers.API
 {
@@ -21,8 +22,11 @@ namespace xMovies.Controllers.API
         //get: api/movie
         public IHttpActionResult GetMovies()
         {
-            var movies = _context.Movies.ToList();
-            return Ok(movies.Select(Mapper.Map<Movie, MovieDto>));
+            var movieDtos = _context.Movies
+                .Include(m=>m.Genre)
+                .ToList()
+                .Select((Mapper.Map<Movie, MovieDto>));
+            return Ok(movieDtos);
         }
 
         //get: api/movie/:Id
