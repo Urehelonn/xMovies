@@ -12,6 +12,7 @@
             <th>Movie</th>
             <th>Release Date</th>
             <th>Genre</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -20,47 +21,49 @@
 
 @section scripts{
     <script>
-        var table = $("#movie").Datatable({
-            ajax: {
-                url: "api/movie/",
-                dataSrc: ""
-            },
-            column: [
-                {
-                    data: "name",
-                    render: function(data, type, movie) {
-                        return "<a href='/movie/"+movie.id+"'>"+data+"</a>"
-                    }
+        $(document).ready(function() {
+            var table = $("#movies").DataTable({
+                ajax: {
+                    url: "/api/movie/",
+                    dataSrc: ""
                 },
-                {
-                    data: "releaseDate"
-                },
-                {
-                    data: "genre.name"
-                },
-                {
-                    data: "id",
-                    render: function (data) {
-                        return "<button class='js-delete' movieId="+data+">Delete</button>" 
-                    }
-                }
-            ]
-        });
-
-        $('#movies').on("click", "js-delete", function () {
-            var button = $(this);
-            var str = ("/api/movie/" + button.attr.movieId).replace(" ", "");
-            bootbox.confirm("You sure to delete this movie from database?", function (res) {
-                if (res) {
-                    $.ajax({
-                        url: (str),
-                        method: "DELETE",
-                        success: function () {
-                            table.row(button.parents("tr")).remove().draw();
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, movie) {
+                            return "<a href='/movie/edit" + movie.id + "'>" + data + "</a>"
                         }
-                    })
-                }
-            })
-        })
+                    },
+                    {
+                        data: "releaseDate"
+                    },
+                    {
+                        data: "genre.name"
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn btn-link js-delete' movieId=" + data + ">Delete</button>"
+                        }
+                    }
+                ]
+            });
+            $('#movies').on("click", "js-delete", function () {
+                var button = $(this);
+                var str = ("/api/movie/" + button.attr.movieId).replace(" ", "");
+                bootbox.confirm("You sure to delete this movie from database?", function (res) {
+                    if (res) {
+                        $.ajax({
+                            url: (str),
+                            method: "DELETE",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        })
+                    }
+                });
+            });
+        });
+        
     </script>    
 }

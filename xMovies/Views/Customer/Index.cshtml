@@ -18,9 +18,7 @@
             <th>Delete</th>
         </tr>
     </thead>
-    <tbody>
-            
-    </tbody>
+    <tbody></tbody>
 </table>
 
 
@@ -36,7 +34,7 @@
                     {
                         data: "name",
                         render: function (data, type, customer) {
-                            return "<a href='/customer/edit/"+ customer.id + "'>"+data+"</a>"
+                            return "<a href='/customer/edit/" + customer.id + "'>" + data + "</a>"
                         }
                     },
                     {
@@ -45,7 +43,7 @@
                     {
                         data: "id",
                         render: function (data) {
-                            return "<button class='btn btn-link js-delete' customerId="+data+">Delete</button>";
+                            return "<button class='btn btn-link js-delete' customerId=" + data + ">Delete</button>";
                         }
                     }
 

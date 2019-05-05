@@ -25,7 +25,7 @@ namespace xMovies.Controllers.API
             var movieDtos = _context.Movies
                 .Include(m=>m.Genre)
                 .ToList()
-                .Select((Mapper.Map<Movie, MovieDto>));
+                .Select(Mapper.Map<Movie, MovieDto>);
             return Ok(movieDtos);
         }
 
