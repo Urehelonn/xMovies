@@ -24,7 +24,6 @@ namespace xMovies.Controllers
         }
 
         // GET: Customer
-        [Authorize]
         public ViewResult Index()
         {
             return View();
