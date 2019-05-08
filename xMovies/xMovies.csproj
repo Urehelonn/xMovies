@@ -261,6 +261,10 @@
     <Compile Include="Migrations\201904140844113_IsAdultAddToCustomer.Designer.cs">
       <DependentUpon>201904140844113_IsAdultAddToCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905080620510_SeedUser.cs" />
+    <Compile Include="Migrations\201905080620510_SeedUser.Designer.cs">
+      <DependentUpon>201905080620510_SeedUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Dto\CustomerDto.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -663,6 +667,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904140844113_IsAdultAddToCustomer.resx">
       <DependentUpon>201904140844113_IsAdultAddToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905080620510_SeedUser.resx">
+      <DependentUpon>201905080620510_SeedUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
