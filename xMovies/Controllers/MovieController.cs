@@ -24,7 +24,9 @@ namespace xMovies.Controllers
         // GET: Movie
         public ActionResult Index()
         {
-            return View();
+            if(User.IsInRole("CanManageMovies"))
+                return View("Index");
+            return View("ReadOnlyIndex");
         }
 
         //Get: movie/detail/:id
@@ -39,6 +41,7 @@ namespace xMovies.Controllers
 
         //Get: movie/new
         //direct to add new movie page
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var viewModel = new MovieFormViewModel
@@ -50,6 +53,7 @@ namespace xMovies.Controllers
 
         //Get: movie/new
         //apply change of the movie from edit page or create page to database
+        [Authorize(Roles = RoleName.CanManageMovies)]
         [HttpPost]
         public ActionResult Save(Movie movie)
         {
@@ -75,6 +79,7 @@ namespace xMovies.Controllers
 
         //Get: movie/edit/:id
         //take id and direct to movie edit page
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int Id)
         {
             var movie = GetMoviesById(Id);

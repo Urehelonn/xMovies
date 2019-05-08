@@ -38,6 +38,7 @@ namespace xMovies.Controllers.API
         }
 
         //post: api/movie
+        [Authorize(Roles = RoleName.CanManageMovies)]
         [HttpPost]
         public IHttpActionResult AddMovie(MovieDto movieDto)
         {
@@ -53,6 +54,7 @@ namespace xMovies.Controllers.API
         }
 
         //put: api/movie/:Id
+        [Authorize(Roles = RoleName.CanManageMovies)]
         [HttpPut]
         public IHttpActionResult UpdateMovie(int Id, MovieDto movieDto)
         {
@@ -70,6 +72,7 @@ namespace xMovies.Controllers.API
         }
 
         //delete: api/movie/:Id
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public IHttpActionResult DeleteMovie(int Id)
         {
             var movie = _context.Movies.SingleOrDefault(m=>m.Id==Id);

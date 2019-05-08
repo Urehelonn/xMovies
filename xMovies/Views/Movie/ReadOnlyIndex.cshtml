@@ -1,0 +1,43 @@
+﻿@model xMovies.ViewModels.MovieIndexViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2> Movie Index</h2>
+<table class="table table-bordered table-hover" id="movies">
+    <thead>
+        <tr>
+            <th>Movie</th>
+            <th>Release Date</th>
+            <th>Genre</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+@section scripts{
+    <script>
+        $(document).ready(function() {
+            var table = $("#movies").DataTable({
+                ajax: {
+                    url: "/api/movie/",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name"                        
+                    },
+                    {
+                        data: "releaseDate"
+                    },
+                    {
+                        data: "genre.name"
+                    }
+                ]
+            });           
+        });
+        
+    </script>    
+}
