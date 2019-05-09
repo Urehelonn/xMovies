@@ -64,6 +64,10 @@ namespace xMovies.Models
 
     public class RegisterViewModel
     {
+        [StringLength(255)]
+        [Display(Name = "User Introduction")]
+        public string UserIntro { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
