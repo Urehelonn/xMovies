@@ -40,6 +40,7 @@ namespace xMovies.Controllers
 
         //Get: customer/new
         //direct to add new customer page
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var membershipTypes = _context.MembershipTypes.ToList();
@@ -54,6 +55,7 @@ namespace xMovies.Controllers
 
         //Post: customer/create
         //get data from add customer page and store to database then redirect
+        [Authorize(Roles = RoleName.CanManageMovies)]
         [HttpPost]
         public ActionResult Save(Customer customer)
         {
@@ -88,6 +90,7 @@ namespace xMovies.Controllers
 
         //Get: customer/edit/:id
         //take id and direct to customer edit page
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int Id)
         {
             var customer = GetCustomerWithId(Id);

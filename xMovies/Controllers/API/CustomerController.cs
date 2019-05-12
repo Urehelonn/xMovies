@@ -42,6 +42,7 @@ namespace xMovies.Controllers.API
 
         //post: api/customer
         //post new customer to database
+        [Authorize(Roles = RoleName.CanManageMovies)]
         [HttpPost]
         public IHttpActionResult AddCustomer(CustomerDto customerDto)
         {
@@ -59,6 +60,7 @@ namespace xMovies.Controllers.API
 
         //put: api/customer
         //update existing customer and save to database
+        [Authorize(Roles = RoleName.CanManageMovies)]
         [HttpPut]
         public IHttpActionResult UpdateCustomer(int Id, CustomerDto customerDto)
         {
@@ -79,6 +81,7 @@ namespace xMovies.Controllers.API
         }
 
         //delete: api/customer/:Id
+        [Authorize(Roles = RoleName.CanManageMovies)]
         [HttpDelete]
         public IHttpActionResult DeleteCustomer(int Id)
         {
