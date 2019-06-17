@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using xMovies.Dto;
 using xMovies.Models;
 using xMovies.ViewModels;
 
@@ -108,7 +109,9 @@ namespace xMovies.Controllers
 
 
 
+
         //functions
+
         private IEnumerable<Customer> GetCustomers()
         {
             return _context.Customers;
