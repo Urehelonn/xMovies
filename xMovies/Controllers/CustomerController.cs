@@ -27,7 +27,9 @@ namespace xMovies.Controllers
         // GET: Customer
         public ViewResult Index()
         {
-            return View();
+            if (User.IsInRole("CanManageMovies"))
+                return View("Index");
+            return View("ReadOnlyIndex");
         }
 
         [Route("customer/detail/{Id}")]
@@ -111,7 +113,6 @@ namespace xMovies.Controllers
 
 
         //functions
-
         private IEnumerable<Customer> GetCustomers()
         {
             return _context.Customers;
