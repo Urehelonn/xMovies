@@ -90,6 +90,6 @@ namespace xMovies.Controllers.API
             _context.Customers.Remove(customerInDb);
             _context.SaveChanges();
             return Ok();
-        }
+        }        
     }
 }

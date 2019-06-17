@@ -17,6 +17,9 @@ namespace xMovies.App_Start
             Mapper.CreateMap<MembershipType, MembershipTypeDto>();
             Mapper.CreateMap<Genre, GenreDto>();
 
+            Mapper.CreateMap<MovieAccessRecordDto, MovieAccessRecord>();
+            Mapper.CreateMap<MovieAccessRecord,MovieAccessRecordDto>();
+
             Mapper.CreateMap<CustomerDto, Customer>().ForMember(c=>c.Id, opt=>opt.Ignore());
             Mapper.CreateMap<MovieDto, Movie>().ForMember(c => c.Id, opt => opt.Ignore());
 

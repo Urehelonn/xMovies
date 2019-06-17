@@ -19,9 +19,9 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44359</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -224,6 +224,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\API\CustomerController.cs" />
+    <Compile Include="Controllers\API\MovieAccessController.cs" />
     <Compile Include="Controllers\API\MovieController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
@@ -232,6 +233,7 @@
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Dto\GenreDto.cs" />
     <Compile Include="Dto\MembershipTypeDto.cs" />
+    <Compile Include="Dto\MovieAccessRecordDto.cs" />
     <Compile Include="Dto\MovieDto.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
@@ -285,6 +287,34 @@
     <Compile Include="Migrations\201905090750052_AddUserIntroToIdentityModel.Designer.cs">
       <DependentUpon>201905090750052_AddUserIntroToIdentityModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906170153591_MovieListAddToCustomerModel.cs" />
+    <Compile Include="Migrations\201906170153591_MovieListAddToCustomerModel.Designer.cs">
+      <DependentUpon>201906170153591_MovieListAddToCustomerModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906170159161_MovieListTypeChanged.cs" />
+    <Compile Include="Migrations\201906170159161_MovieListTypeChanged.Designer.cs">
+      <DependentUpon>201906170159161_MovieListTypeChanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906170202489_MovieListTypeChanged2.cs" />
+    <Compile Include="Migrations\201906170202489_MovieListTypeChanged2.Designer.cs">
+      <DependentUpon>201906170202489_MovieListTypeChanged2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906170215173_MovieAccessRecordModelAdded.cs" />
+    <Compile Include="Migrations\201906170215173_MovieAccessRecordModelAdded.Designer.cs">
+      <DependentUpon>201906170215173_MovieAccessRecordModelAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906170441570_customerAndIdentityModelChanged.cs" />
+    <Compile Include="Migrations\201906170441570_customerAndIdentityModelChanged.Designer.cs">
+      <DependentUpon>201906170441570_customerAndIdentityModelChanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906170445421_movieAccessDateHappenedAdded.cs" />
+    <Compile Include="Migrations\201906170445421_movieAccessDateHappenedAdded.Designer.cs">
+      <DependentUpon>201906170445421_movieAccessDateHappenedAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906170457435_movieLimitAdded.cs" />
+    <Compile Include="Migrations\201906170457435_movieLimitAdded.Designer.cs">
+      <DependentUpon>201906170457435_movieLimitAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Dto\CustomerDto.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -294,6 +324,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\MovieAccessRecord.cs" />
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\VIPNeedToBeAdultValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -695,6 +726,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905090750052_AddUserIntroToIdentityModel.resx">
       <DependentUpon>201905090750052_AddUserIntroToIdentityModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906170153591_MovieListAddToCustomerModel.resx">
+      <DependentUpon>201906170153591_MovieListAddToCustomerModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906170159161_MovieListTypeChanged.resx">
+      <DependentUpon>201906170159161_MovieListTypeChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906170202489_MovieListTypeChanged2.resx">
+      <DependentUpon>201906170202489_MovieListTypeChanged2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906170215173_MovieAccessRecordModelAdded.resx">
+      <DependentUpon>201906170215173_MovieAccessRecordModelAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906170441570_customerAndIdentityModelChanged.resx">
+      <DependentUpon>201906170441570_customerAndIdentityModelChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906170445421_movieAccessDateHappenedAdded.resx">
+      <DependentUpon>201906170445421_movieAccessDateHappenedAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906170457435_movieLimitAdded.resx">
+      <DependentUpon>201906170457435_movieLimitAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

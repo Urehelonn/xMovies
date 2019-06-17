@@ -18,5 +18,7 @@ namespace xMovies.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MMM, dd, yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ReleaseDate { get; set; } = DateTime.Now;
+
+        public bool Limit { get; set; } = false;
     }
 }

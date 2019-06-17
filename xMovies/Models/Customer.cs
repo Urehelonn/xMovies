@@ -16,8 +16,10 @@ namespace xMovies.Models
         [Display(Name="Membership Type")]
         [VIPNeedToBeAdultValidation]
         public byte MembershipTypeId { get; set; }
+        //will need to add user id as well to create one-one binding between user identity and customer
         public MembershipType MembershipType { get; set; }
         public short MembershipDurationLeftInMonth { get; set; }
         public bool IsAdult { get; set; }
+        public List<int> MovieList { get; set; }
     }
 }
