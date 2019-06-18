@@ -21,5 +21,8 @@ namespace xMovies.Models
         public short MembershipDurationLeftInMonth { get; set; }
         public bool IsAdult { get; set; }
         public List<int> MovieList { get; set; }
+
+        [Required]
+        public string UserEmail { get; set; }
     }
 }

@@ -319,6 +319,10 @@
     <Compile Include="Migrations\201906170539598_membershiptypeNonAdded.Designer.cs">
       <DependentUpon>201906170539598_membershiptypeNonAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906180530586_customerEmailAdded.cs" />
+    <Compile Include="Migrations\201906180530586_customerEmailAdded.Designer.cs">
+      <DependentUpon>201906180530586_customerEmailAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Dto\CustomerDto.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -755,6 +759,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906170539598_membershiptypeNonAdded.resx">
       <DependentUpon>201906170539598_membershiptypeNonAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906180530586_customerEmailAdded.resx">
+      <DependentUpon>201906180530586_customerEmailAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

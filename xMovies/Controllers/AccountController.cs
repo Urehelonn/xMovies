@@ -173,25 +173,7 @@ namespace xMovies.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    //create empty customer with this behaviour as well when not creating manager account
-                    //int CreateEmptyCustomer()
-                    //{
-                    //    var _context = new ApplicationDbContext();
-                    //    Customer customer = new Customer
-                    //    {
-                    //        Name = "N/A",
-                    //        EmailSubscribed = true,
-                    //        MembershipTypeId = MembershipType.NonMember,
-                    //        MembershipType = _context.MembershipTypes.Single(m => m.Id == 0),
-                    //        MembershipDurationLeftInMonth = 99,
-                    //        IsAdult = false
-                    //    };
-                    //    _context.Customers.Add(customer);
-                    //    return customer.Id;
-                    //}
-                    //user.CustomerId = CreateEmptyCustomer();
-
+                                        
                     return RedirectToAction("Index", "Movie");
                 }
                 AddErrors(result);
