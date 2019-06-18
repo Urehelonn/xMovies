@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using xMovies.Dto;
 using xMovies.Models;
 using xMovies.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace xMovies.Controllers
 {
     public class CustomerController : Controller
     {
         private ApplicationDbContext _context;
+        private ApplicationUser currUser;
 
         public CustomerController()
-        {
+        {            
             _context = new ApplicationDbContext();
+            var http = HttpContext.User.Identity;
+            var id = http.GetUserId();
+            currUser = _context.Users.Single(u => u.Id==id);
         }
 
         //dbcontext as disposable object needs to override this method
@@ -40,14 +46,14 @@ namespace xMovies.Controllers
 
         //Get: customer/new
         //direct to add new customer page
-        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var membershipTypes = _context.MembershipTypes.ToList();
             var viewModel = new CustomerFormViewModel
             {
                 Customer = new Customer(),
-                MembershipTypes = membershipTypes
+                MembershipTypes = membershipTypes,
+                Email = currUser.Email
             };
 
             return View("CustomerForm", viewModel);
@@ -72,6 +78,7 @@ namespace xMovies.Controllers
             if (customer.Id == 0)
             {
                 _context.Customers.Add(customer);
+                currUser.CustomerId = customer.Id;
             }
             //update existing customer with matching id
             else
@@ -84,13 +91,14 @@ namespace xMovies.Controllers
                 customerInDb.MembershipTypeId = customer.MembershipTypeId;
                 customerInDb.IsAdult = customer.IsAdult;
             }
+            
+
             _context.SaveChanges();
             return RedirectToAction("Index", "Customer");
         }
 
         //Get: customer/edit/:id
         //take id and direct to customer edit page
-        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int Id)
         {
             var customer = GetCustomerWithId(Id);
@@ -108,7 +116,9 @@ namespace xMovies.Controllers
 
 
 
+
         //functions
+
         private IEnumerable<Customer> GetCustomers()
         {
             return _context.Customers;

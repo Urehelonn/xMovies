@@ -64,13 +64,15 @@ namespace xMovies.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+            var currUser = UserManager.FindById(User.Identity.GetUserId());
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                CustomerId = currUser.CustomerId,
             };
             return View(model);
         }
@@ -130,7 +132,6 @@ namespace xMovies.Controllers
             return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
         }
 
-        //
         // POST: /Manage/EnableTwoFactorAuthentication
         [HttpPost]
         [ValidateAntiForgeryToken]
