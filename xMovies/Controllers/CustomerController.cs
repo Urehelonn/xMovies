@@ -18,9 +18,9 @@ namespace xMovies.Controllers
         public CustomerController()
         {            
             _context = new ApplicationDbContext();
-            var http = HttpContext.User.Identity;
-            var id = http.GetUserId();
-            currUser = _context.Users.Single(u => u.Id==id);
+            //var http = HttpContext.User.Identity;
+            //var id = http.GetUserId();
+            //currUser = _context.Users.Single(u => u.Id==id);
         }
 
         //dbcontext as disposable object needs to override this method
@@ -53,7 +53,7 @@ namespace xMovies.Controllers
             {
                 Customer = new Customer(),
                 MembershipTypes = membershipTypes,
-                Email = currUser.Email
+                //Email = currUser.Email
             };
 
             return View("CustomerForm", viewModel);
@@ -78,7 +78,7 @@ namespace xMovies.Controllers
             if (customer.Id == 0)
             {
                 _context.Customers.Add(customer);
-                currUser.CustomerId = customer.Id;
+                //currUser.CustomerId = customer.Id;
             }
             //update existing customer with matching id
             else
