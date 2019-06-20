@@ -323,6 +323,10 @@
     <Compile Include="Migrations\201906180530586_customerEmailAdded.Designer.cs">
       <DependentUpon>201906180530586_customerEmailAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906182258184_CustomerChangedBack.cs" />
+    <Compile Include="Migrations\201906182258184_CustomerChangedBack.Designer.cs">
+      <DependentUpon>201906182258184_CustomerChangedBack.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Dto\CustomerDto.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -761,6 +765,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906180530586_customerEmailAdded.resx">
       <DependentUpon>201906180530586_customerEmailAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906182258184_CustomerChangedBack.resx">
+      <DependentUpon>201906182258184_CustomerChangedBack.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

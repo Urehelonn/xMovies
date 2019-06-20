@@ -84,7 +84,7 @@
             }*@
         </dd>
         @* this part is to navidate to manage customer page *@
-        <dt>Customer Manage:</dt>
+        @*<dt>Customer Manage:</dt>
         @if (Model.CustomerId != 0)
         {
             <dd>
@@ -94,6 +94,6 @@
         else
         {
             <dd>@Html.ActionLink("Create Customer", "New", "Customer")</dd>
-        }
+        }*@
     </dl>
 </div>

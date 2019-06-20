@@ -39,11 +39,11 @@ else
             @Html.CheckBoxFor(c => c.Customer.IsAdult)   You sure you're adult ??
         </label>
     </div>
-    <div>
+    @*<div>
         <label>
             Email:
         </label>: @Html.TextBoxFor(c => c.Email, new { @readonly = "readonly" })
-    </div>
+    </div>*@
 
     @Html.HiddenFor(c => c.Customer.Id)
 
